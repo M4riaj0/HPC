@@ -1,0 +1,5 @@
+[
+  { "n": 1000, "procesos": 2, "tiempo": 0.000551 },
+  { "n": 2000, "procesos": 2, "tiempo": 0.001274 },
+  { "n": 3000, "procesos": 2, "tiempo": 0.002905 },
+  { "n": 4000, "procesos": 2, "tiempo": 0.004554 },

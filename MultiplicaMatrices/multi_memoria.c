@@ -20,7 +20,7 @@ int inicializar_matrices(int **A, int **B, int **C, int n){
     }
 }
 
-int multiplicar_secuencial(int **A, int **B, int **C, int n){
+int multiplicar_optimizado(int **A, int **B, int **C, int n){
     for (int i = 0; i < n; i++) {
         for (int k = 0; k < n; k++) {
             int temp = A[i][k];
@@ -31,17 +31,6 @@ int multiplicar_secuencial(int **A, int **B, int **C, int n){
     }
 }
 
-void multiplicar_tradicional(int **A, int **B, int **C, int n) {
-    for (int i = 0; i < n; i++) {         // Recorre filas de A
-        for (int j = 0; j < n; j++) {     // Recorre columnas de B
-            int suma = 0;
-            for (int k = 0; k < n; k++) { // Realiza el producto punto
-                suma += A[i][k] * B[k][j];
-            }
-            C[i][j] = suma;
-        }
-    }
-}
 
 void liberar_matriz(int **matriz, int n) {
     for (int i = 0; i < n; i++) {
@@ -67,9 +56,11 @@ int main(int argc, char *argv[]) {
 
     inicializar_matrices(A, B, C, n);
 
+    // Medición de tiempo
     clock_t inicio = clock();
-    multiplicar_tradicional(A, B, C, n);
+    multiplicar_optimizado(A, B, C, n);
     clock_t fin = clock();
+
     double tiempo_cpu = (double)(fin - inicio) / CLOCKS_PER_SEC;
 
     printf("  { \"n\": %d, \"tiempo\": %f },\n", n, tiempo_cpu);
