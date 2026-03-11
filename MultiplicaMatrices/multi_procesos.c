@@ -80,7 +80,8 @@ int main(int argc, char *argv[]) {
 
     inicializar_matrices(A, B, C, n);
 
-    clock_t inicio = clock();
+    struct timespec inicio, fin;
+    clock_gettime(CLOCK_MONOTONIC, &inicio);
 
     for (int i = 0; i < num_procesos; i++) {
         pid_t pid = fork();
@@ -101,8 +102,8 @@ int main(int argc, char *argv[]) {
         wait(NULL);
     }
 
-    clock_t fin = clock();
-    double tiempo_cpu = (double)(fin - inicio) / CLOCKS_PER_SEC;
+    clock_gettime(CLOCK_MONOTONIC, &fin);
+    double tiempo_cpu = (fin.tv_sec - inicio.tv_sec) + (fin.tv_nsec - inicio.tv_nsec) / 1e9;
 
     printf("  { \"n\": %d, \"procesos\": %d, \"tiempo\": %f },\n", n, num_procesos, tiempo_cpu);
 
