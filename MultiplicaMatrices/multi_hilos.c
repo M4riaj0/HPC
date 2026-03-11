@@ -80,8 +80,9 @@ int main(int argc, char *argv[]) {
     pthread_t hilos[num_hilos];
     DatosHilo datos[num_hilos];
 
-    // Medición de tiempo (incluye la creación y unión de hilos)
-    clock_t inicio = clock();
+    // Medición de tiempo real (wall-clock) para hilos
+    struct timespec inicio, fin;
+    clock_gettime(CLOCK_MONOTONIC, &inicio);
 
     for (int i = 0; i < num_hilos; i++) {
         datos[i].id = i;
@@ -97,9 +98,9 @@ int main(int argc, char *argv[]) {
         pthread_join(hilos[i], NULL);
     }
 
-    clock_t fin = clock();
+    clock_gettime(CLOCK_MONOTONIC, &fin);
 
-    double tiempo_cpu = (double)(fin - inicio) / CLOCKS_PER_SEC;
+    double tiempo_cpu = (fin.tv_sec - inicio.tv_sec) + (fin.tv_nsec - inicio.tv_nsec) / 1e9;
 
     // Salida JSON
     printf("  { \"n\": %d, \"hilos\": %d, \"tiempo\": %f },\n", n, num_hilos, tiempo_cpu);
