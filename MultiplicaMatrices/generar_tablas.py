@@ -284,4 +284,36 @@ plt.savefig(out_path, dpi=200, bbox_inches='tight', facecolor='white', edgecolor
 plt.close()
 print(f'  -> {out_path}')
 
+# ---------------------------------------------------------------------------
+# 6) Gráfico: Speedup de Procesos en función de las dimensiones
+# ---------------------------------------------------------------------------
+print('Generando gráfico speedup procesos...')
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+colors_proc = ['#4472C4', '#C0504D', '#A5A5A5', '#FFC000', '#4472C4']
+
+for p, color in zip(procesos_counts, colors_proc):
+    promedios_p = [np.mean(procesos_by_count[p][d]) for d in dimensiones_sec]
+    speedups_p = [sec_promedios[j] / promedios_p[j] for j in range(len(dimensiones_sec))]
+    ax.plot(dimensiones_sec, speedups_p, marker='o', linewidth=2,
+            markersize=6, label=f'{p} Procesos', color=color)
+
+ax.set_xlabel('Dimensión de la matriz cuadrada (NxN)', fontsize=11, fontfamily='serif')
+ax.set_ylabel('Speedup', fontsize=11, fontfamily='serif')
+ax.set_xticks(dimensiones_sec)
+ax.set_xticklabels([str(d) for d in dimensiones_sec])
+ax.grid(True, linestyle='-', alpha=0.3)
+ax.legend(loc='lower right', fontsize=9, frameon=True)
+
+fig.text(0.05, 0.98,
+         'Gráfico 3. Valor de Speed Up de procesos en función de las dimensiones de la matriz.',
+         fontsize=11, fontstyle='italic', verticalalignment='top', fontfamily='serif')
+
+plt.tight_layout(rect=[0, 0, 1, 0.95])
+out_path = os.path.join(SCRIPT_DIR, 'grafico_speedup_procesos.png')
+plt.savefig(out_path, dpi=200, bbox_inches='tight', facecolor='white', edgecolor='none')
+plt.close()
+print(f'  -> {out_path}')
+
 print('\nTodas las tablas y gráficos generados exitosamente.')
