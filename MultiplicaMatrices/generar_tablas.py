@@ -213,4 +213,42 @@ for idx, p in enumerate(procesos_counts):
         has_speedup=True
     )
 
-print('\nTodas las tablas generadas exitosamente.')
+# ---------------------------------------------------------------------------
+# 4) Gráfico: Secuencial vs Hilos (promedios)
+# ---------------------------------------------------------------------------
+print('Generando gráfico secuencial vs hilos...')
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Secuencial
+ax.plot(dimensiones_sec, sec_promedios, marker='s', linewidth=2.5,
+        markersize=6, label='Secuencial', color='#4472C4')
+
+# Hilos
+colors_hilos = ['#C0504D', '#9BBB59', '#7F6084', '#4BACC6', '#F79646']
+for h, color in zip(hilos_counts, colors_hilos):
+    promedios_h = [np.mean(hilos_by_count[h][d]) for d in dimensiones_sec]
+    ax.plot(dimensiones_sec, promedios_h, marker='s', linewidth=2,
+            markersize=5, label=f'{h} Hilos', color=color)
+
+ax.set_title('Ejecución secuencial vs concurrente', fontsize=14, fontweight='bold',
+             fontfamily='serif', pad=15)
+ax.set_xlabel('Dimensión de la matriz cuadrada (NxN)', fontsize=11, fontfamily='serif')
+ax.set_ylabel('Tiempo de ejecución (s)', fontsize=11, fontfamily='serif')
+ax.set_xticks(dimensiones_sec)
+ax.set_xticklabels([str(d) for d in dimensiones_sec])
+ax.grid(True, axis='y', linestyle='-', alpha=0.3)
+ax.legend(loc='upper left', fontsize=9, frameon=True)
+
+# Title above figure (italic, like reference)
+fig.text(0.05, 0.98,
+         'Gráfico 1. Tiempo de ejecución en función de las dimensiones de la matriz.',
+         fontsize=11, fontstyle='italic', verticalalignment='top', fontfamily='serif')
+
+plt.tight_layout(rect=[0, 0, 1, 0.95])
+out_path = os.path.join(SCRIPT_DIR, 'grafico_sec_vs_hilos.png')
+plt.savefig(out_path, dpi=200, bbox_inches='tight', facecolor='white', edgecolor='none')
+plt.close()
+print(f'  -> {out_path}')
+
+print('\nTodas las tablas y gráficos generados exitosamente.')
