@@ -179,4 +179,38 @@ for idx, h in enumerate(hilos_counts):
         has_speedup=True
     )
 
+# ---------------------------------------------------------------------------
+# 3) Tablas de Procesos (one per process count)
+# ---------------------------------------------------------------------------
+procesos_data = load_json('resultados_procesos.json')
+procesos_counts = [2, 4, 8, 16, 32]
+
+procesos_by_count = {p: {d: [] for d in dimensiones_sec} for p in procesos_counts}
+for entry in procesos_data:
+    p = entry['procesos']
+    d = entry['n']
+    procesos_by_count[p][d].append(entry['tiempo'])
+
+for idx, p in enumerate(procesos_counts):
+    print(f'Generando tabla {p} procesos...')
+    proc_table = []
+    for i in range(n_runs):
+        row = [procesos_by_count[p][d][i] for d in dimensiones_sec]
+        proc_table.append(row)
+
+    promedios_p = [np.mean(procesos_by_count[p][d]) for d in dimensiones_sec]
+    speedups = [sec_promedios[j] / promedios_p[j] for j in range(len(dimensiones_sec))]
+
+    proc_table.append(promedios_p)
+    proc_table.append(speedups)
+
+    row_labels_p = [str(i+1) for i in range(n_runs)] + ['Promedio', 'Speedup']
+
+    render_table(
+        proc_table, row_labels_p, col_labels_sec,
+        f'Tabla {idx+7}: Resultados de la ejecución con {p} procesos.',
+        f'tabla_procesos_{p}.png',
+        has_speedup=True
+    )
+
 print('\nTodas las tablas generadas exitosamente.')
