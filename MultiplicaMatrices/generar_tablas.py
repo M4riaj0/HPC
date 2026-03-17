@@ -214,6 +214,66 @@ for idx, p in enumerate(procesos_counts):
     )
 
 # ---------------------------------------------------------------------------
+# 3b) Tabla Compilador (optimización con flags del compilador)
+# ---------------------------------------------------------------------------
+compilador_data = load_json('resultados_compilador.json')
+
+compilador_by_dim = {d: [] for d in dimensiones_sec}
+for entry in compilador_data:
+    compilador_by_dim[entry['n']].append(entry['tiempo'])
+
+print('Generando tabla compilador...')
+compilador_table = []
+for i in range(n_runs):
+    row = [compilador_by_dim[d][i] for d in dimensiones_sec]
+    compilador_table.append(row)
+
+compilador_promedios = [np.mean(compilador_by_dim[d]) for d in dimensiones_sec]
+compilador_speedups = [sec_promedios[j] / compilador_promedios[j] for j in range(len(dimensiones_sec))]
+
+compilador_table.append(compilador_promedios)
+compilador_table.append(compilador_speedups)
+
+row_labels_compilador = [str(i+1) for i in range(n_runs)] + ['Promedio', 'Speedup']
+
+render_table(
+    compilador_table, row_labels_compilador, col_labels_sec,
+    'Tabla 12: Resultados de la ejecución con optimización del compilador.',
+    'tabla_compilador.png',
+    has_speedup=True
+)
+
+# ---------------------------------------------------------------------------
+# 3c) Tabla Memoria Compartida
+# ---------------------------------------------------------------------------
+memoria_data = load_json('resultados_memoria.json')
+
+memoria_by_dim = {d: [] for d in dimensiones_sec}
+for entry in memoria_data:
+    memoria_by_dim[entry['n']].append(entry['tiempo'])
+
+print('Generando tabla memoria compartida...')
+memoria_table = []
+for i in range(n_runs):
+    row = [memoria_by_dim[d][i] for d in dimensiones_sec]
+    memoria_table.append(row)
+
+memoria_promedios = [np.mean(memoria_by_dim[d]) for d in dimensiones_sec]
+memoria_speedups = [sec_promedios[j] / memoria_promedios[j] for j in range(len(dimensiones_sec))]
+
+memoria_table.append(memoria_promedios)
+memoria_table.append(memoria_speedups)
+
+row_labels_memoria = [str(i+1) for i in range(n_runs)] + ['Promedio', 'Speedup']
+
+render_table(
+    memoria_table, row_labels_memoria, col_labels_sec,
+    'Tabla 13: Resultados de la ejecución con memoria compartida.',
+    'tabla_memoria.png',
+    has_speedup=True
+)
+
+# ---------------------------------------------------------------------------
 # 4) Gráfico: Secuencial vs Hilos (promedios)
 # ---------------------------------------------------------------------------
 print('Generando gráfico secuencial vs hilos...')
