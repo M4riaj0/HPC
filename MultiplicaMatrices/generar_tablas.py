@@ -376,4 +376,56 @@ plt.savefig(out_path, dpi=200, bbox_inches='tight', facecolor='white', edgecolor
 plt.close()
 print(f'  -> {out_path}')
 
+# ---------------------------------------------------------------------------
+# 7) Gráfico: Comparación de mejores speedups (hilos, procesos, compilador, memoria)
+# ---------------------------------------------------------------------------
+print('Generando gráfico comparativo de mejores speedups...')
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Best 2 hilos: 4 and 8
+best_hilos = [4, 8]
+colors_best = ['#C0504D', '#A5A5A5', '#9BBB59', '#FFC000', '#7F6084', '#4BACC6']
+
+for h, color in zip(best_hilos, colors_best[:2]):
+    promedios_h = [np.mean(hilos_by_count[h][d]) for d in dimensiones_sec]
+    speedups_h = [sec_promedios[j] / promedios_h[j] for j in range(len(dimensiones_sec))]
+    ax.plot(dimensiones_sec, speedups_h, marker='o', linewidth=2,
+            markersize=6, label=f'{h} Hilos', color=color)
+
+# Best 2 procesos: 4 and 16
+best_procesos = [4, 16]
+for p, color in zip(best_procesos, colors_best[2:4]):
+    promedios_p = [np.mean(procesos_by_count[p][d]) for d in dimensiones_sec]
+    speedups_p = [sec_promedios[j] / promedios_p[j] for j in range(len(dimensiones_sec))]
+    ax.plot(dimensiones_sec, speedups_p, marker='s', linewidth=2,
+            markersize=6, label=f'{p} Procesos', color=color)
+
+# Compilador
+compilador_speedups_plot = [sec_promedios[j] / compilador_promedios[j] for j in range(len(dimensiones_sec))]
+ax.plot(dimensiones_sec, compilador_speedups_plot, marker='^', linewidth=2,
+        markersize=7, label='Compilador', color=colors_best[4])
+
+# Memoria compartida
+memoria_speedups_plot = [sec_promedios[j] / memoria_promedios[j] for j in range(len(dimensiones_sec))]
+ax.plot(dimensiones_sec, memoria_speedups_plot, marker='D', linewidth=2,
+        markersize=6, label='Memoria compartida', color=colors_best[5])
+
+ax.set_xlabel('Dimensión de la matriz cuadrada (NxN)', fontsize=11, fontfamily='serif')
+ax.set_ylabel('Speedup', fontsize=11, fontfamily='serif')
+ax.set_xticks(dimensiones_sec)
+ax.set_xticklabels([str(d) for d in dimensiones_sec])
+ax.grid(True, linestyle='-', alpha=0.3)
+ax.legend(loc='best', fontsize=9, frameon=True)
+
+fig.text(0.05, 0.98,
+         'Gráfico 4. Comparación de Speed Up: mejores hilos, procesos, compilador y memoria.',
+         fontsize=11, fontstyle='italic', verticalalignment='top', fontfamily='serif')
+
+plt.tight_layout(rect=[0, 0, 1, 0.95])
+out_path = os.path.join(SCRIPT_DIR, 'grafico_speedup_comparativo.png')
+plt.savefig(out_path, dpi=200, bbox_inches='tight', facecolor='white', edgecolor='none')
+plt.close()
+print(f'  -> {out_path}')
+
 print('\nTodas las tablas y gráficos generados exitosamente.')
