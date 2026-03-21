@@ -232,10 +232,6 @@ int jacobi(int nk, double *A, double *f, double *u, double tol) {
     double *residual = crear_vector(nk);
 
     int it = 0;
-
-    printf("\n  Paso       Residual RMS     Cambio RMS\n");
-    printf("  --------   --------------   --------------\n");
-
     while (1) {
         /* Guardar iterado anterior */
         for (int i = 0; i < nk; i++) {
@@ -266,11 +262,6 @@ int jacobi(int nk, double *A, double *f, double *u, double tol) {
         double cambio_rms = norma_rms(diff, nk);
 
         it++;
-
-        /* Imprimir cada 100 iteraciones o en las primeras 5 */
-        if (it <= 5 || it % 100 == 0) {
-            printf("  %6d     %14.6e   %14.6e\n", it, res_rms, cambio_rms);
-        }
 
         liberar_vector(diff);
 
@@ -382,11 +373,8 @@ int main(int argc, char *argv[]) {
     double tiempo = (double)(fin - inicio) / CLOCKS_PER_SEC;
 
     /* --- Resultados --- */
-    imprimir_errores(k, nk, tol, it_num, udk, ujk, uek);
-    printf("  Tiempo de Jacobi (s)          : %f\n", tiempo);
-    imprimir_tabla(xk, uek, udk, ujk, nk);
+    printf("{\"exponente_k\": %d, \"num_procesos\": %d, \"tiempo_ejecucion_s\": %.6f}\n", k, 1, tiempo);
 
-    printf("\nJACOBI_POISSON_1D: fin normal.\n\n");
 
     /* --- Liberación de memoria --- */
     liberar_vector(xk);
