@@ -207,9 +207,6 @@ int jacobi(int nk, MatrizTridiagonal *T, double *f, double *u, double tol) {
             for (int i = 0; i < nk; i++) diff[i] = u_actual[i] - u_viejo[i];
             double cambio_rms = norma_rms(diff, nk);
             liberar_vector(diff);
-
-            printf("  %6d     %14.6e   %14.6e  <- convergio\n",
-                   it, res_rms, cambio_rms);
             break;
         }
 
@@ -269,19 +266,13 @@ int main(int argc, char *argv[]) {
     /* --- Solución directa (Thomas) --- */
     resolver_directo(&T, fk, udk, nk);
 
-    /* --- Jacobi optimizado --- */
-    printf("\nJACOBI_POISSON_1D\n");
-    printf("  Solucion de la ecuacion de Poisson 1D con iteracion de Jacobi.\n");
-    printf("  Paso       Residual RMS     Cambio RMS\n");
-    printf("  --------   --------------   --------------\n");
-
     clock_t inicio = clock();
     int it_num = jacobi(nk, &T, fk, ujk, tol);
     clock_t fin = clock();
     double tiempo = (double)(fin - inicio) / CLOCKS_PER_SEC;
 
-    printf("{\"exponente_k\": %d, \"num_procesos\": %d, \"iteraciones\": %d, \"tiempo_ejecucion_s\": %.6f}\n",
-           k, 1, it_num, tiempo);
+    printf("{\"exponente_k\": %d, \"iteraciones\": %d, \"tiempo_ejecucion_s\": %.6f}\n",
+           k, it_num, tiempo);
 
     /* --- Liberación de memoria --- */
     liberar_vector(xk);

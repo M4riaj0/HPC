@@ -182,9 +182,6 @@ int main(int argc, char *argv[]) {
     int num_hilos = (argc >= 3) ? atoi(argv[2]) : 4;
     if (num_hilos < 1) { fprintf(stderr, "Error: num_hilos >= 1\n"); return EXIT_FAILURE; }
 
-    printf("\nJACOBI_POISSON_1D (hilos, matriz densa)\n");
-    printf("  %d hilo(s), NK=%d nodos.\n", num_hilos, (1<<k)+1);
-
     double a=0.0,b=1.0,ua=0.0,ub=0.0,tol=1.0e-6;
     int nk = (1<<k)+1;
     double hk = (b-a)/(double)(nk-1);
@@ -207,7 +204,6 @@ int main(int argc, char *argv[]) {
     
     double tiempo=(fin_t.tv_sec-ini.tv_sec)+(fin_t.tv_nsec-ini.tv_nsec)/1e9;
 
-    printf("  Iteraciones: %d\n", it_num);
     printf("{\"exponente_k\":%d,\"num_hilos\":%d,\"tiempo_ejecucion_s\":%.6f}\n",
            k,num_hilos,tiempo);
 
