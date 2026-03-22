@@ -16,8 +16,6 @@
 #include <math.h>
 #include <time.h>
 
-
-
 typedef struct {
     double *diag;   /* diagonal principal: A[i][i]   */
     double *sup;    /* superdiagonal:      A[i][i+1] */
@@ -170,46 +168,63 @@ void calcular_residual_tri(MatrizTridiagonal *T, double *u,
  * Ahora: solo restamos los vecinos que existen (máximo 2)
  *        → 2 operaciones en vez de NK por nodo */
 int jacobi(int nk, MatrizTridiagonal *T, double *f, double *u, double tol) {
-    double *u_viejo  = crear_vector(nk);
-    double *residual = crear_vector(nk);
+    /* POINTER SWAP: dos buffers que se alternan cada iteracion.
+     * u_actual apunta al buffer donde escribimos valores nuevos.
+     * u_viejo  apunta al buffer donde leemos valores del paso anterior.
+     * Antes: for (i) u_viejo[i] = u[i]  ->  O(NK) escrituras por iteracion
+     * Ahora: intercambio de punteros     ->  O(1)  siempre                  */
+    double *buffer_extra = crear_vector(nk);
+    double *u_actual     = u;            /* empieza escribiendo en u[]        */
+    double *u_viejo      = buffer_extra; /* empieza leyendo del buffer extra  */
+    double *residual     = crear_vector(nk);
 
     int it = 0;
 
     while (1) {
-        /* Guardar iterado anterior */
-        for (int i = 0; i < nk; i++) {
-            u_viejo[i] = u[i];
-        }
-
-        /* OPTIMIZACIÓN: actualización con solo vecinos izquierdo y derecho.
-         * La fórmula original era:
-         *   suma = f[i] - sum_{j!=i} A[i][j] * u_viejo[j]
-         * Como A[i][j]=0 para todo j excepto i-1 e i+1, se reduce a:
-         *   suma = f[i] - sub[i]*u_viejo[i-1] - sup[i]*u_viejo[i+1]  */
+        /* Actualización de Jacobi: lee de u_viejo, escribe en u_actual */
         for (int i = 0; i < nk; i++) {
             double suma = f[i];
             if (i > 0)      suma -= T->sub[i] * u_viejo[i - 1];
             if (i < nk - 1) suma -= T->sup[i] * u_viejo[i + 1];
-            u[i] = suma / T->diag[i];
+            u_actual[i] = suma / T->diag[i];
         }
 
-        /* Residual con estructura tridiagonal: O(NK) */
-        calcular_residual_tri(T, u, f, residual, nk);
+        /* Residual tridiagonal: O(NK) */
+        calcular_residual_tri(T, u_actual, f, residual, nk);
 
         double res_rms = norma_rms(residual, nk);
         it++;
 
         if (res_rms <= tol) {
+            /* Si el resultado final quedo en buffer_extra (no en u[]),
+             * copiarlo de vuelta para que main() lo vea correcto */
+            if (u_actual != u) {
+                for (int i = 0; i < nk; i++) u[i] = u_actual[i];
+            }
+
+            /* Calcular cambio para mostrarlo en convergencia */
+            double *diff = crear_vector(nk);
+            for (int i = 0; i < nk; i++) diff[i] = u_actual[i] - u_viejo[i];
+            double cambio_rms = norma_rms(diff, nk);
+            liberar_vector(diff);
+
+            printf("  %6d     %14.6e   %14.6e  <- convergio\n",
+                   it, res_rms, cambio_rms);
             break;
         }
+
+        /* POINTER SWAP: O(1) — los datos no se mueven, solo los punteros.
+         * u_actual y u_viejo apuntan alternativamente a u[] y buffer_extra */
+        double *temp = u_actual;
+        u_actual     = u_viejo;
+        u_viejo      = temp;
     }
 
-    liberar_vector(u_viejo);
+    liberar_vector(buffer_extra);  /* solo liberamos el buffer que creamos */
     liberar_vector(residual);
 
     return it;
 }
-
 /* =========================================================
  * PROGRAMA PRINCIPAL
  * ========================================================= */
@@ -255,13 +270,18 @@ int main(int argc, char *argv[]) {
     resolver_directo(&T, fk, udk, nk);
 
     /* --- Jacobi optimizado --- */
+    printf("\nJACOBI_POISSON_1D\n");
+    printf("  Solucion de la ecuacion de Poisson 1D con iteracion de Jacobi.\n");
+    printf("  Paso       Residual RMS     Cambio RMS\n");
+    printf("  --------   --------------   --------------\n");
+
     clock_t inicio = clock();
-    jacobi(nk, &T, fk, ujk, tol);
+    int it_num = jacobi(nk, &T, fk, ujk, tol);
     clock_t fin = clock();
     double tiempo = (double)(fin - inicio) / CLOCKS_PER_SEC;
 
-    printf("{\"exponente_k\": %d, \"tiempo_ejecucion_s\": %.6f}\n",
-           k, tiempo);
+    printf("{\"exponente_k\": %d, \"num_procesos\": %d, \"iteraciones\": %d, \"tiempo_ejecucion_s\": %.6f}\n",
+           k, 1, it_num, tiempo);
 
     /* --- Liberación de memoria --- */
     liberar_vector(xk);
