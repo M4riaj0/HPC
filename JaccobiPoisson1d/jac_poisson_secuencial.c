@@ -142,50 +142,6 @@ void construir_matriz_A(double *A, int nk, double hk) {
 }
 
 /* =========================================================
- * SOLUCIÓN DIRECTA (sustitución hacia adelante/atrás para
- * sistema tridiagonal — Thomas algorithm)
- * ========================================================= */
-
-/*
- * resolver_directo: resuelve A*u = f para la matriz tridiagonal construida
- *   usando el algoritmo de Thomas (eliminación gaussiana para tridiagonales).
- *   Guarda la solución en ud[].
- *
- *   Complejidad: O(nk).
- */
-void resolver_directo(double *A, double *f, double *ud, int nk) {
-    double *c_prima = crear_vector(nk);
-    double *d_prima = crear_vector(nk);
-
-    /* Extraer diagonales de la matriz */
-    /* a[i] = subdiagonal, b[i] = diagonal principal, c[i] = superdiagonal */
-
-    /* Paso 1: barrido hacia adelante */
-    double b0 = MAT(A, 0, 0, nk);
-    c_prima[0] = (nk > 1) ? MAT(A, 0, 1, nk) / b0 : 0.0;
-    d_prima[0] = f[0] / b0;
-
-    for (int i = 1; i < nk; i++) {
-        double ai = MAT(A, i, i - 1, nk);
-        double bi = MAT(A, i, i,     nk);
-        double ci = (i < nk - 1) ? MAT(A, i, i + 1, nk) : 0.0;
-
-        double denom = bi - ai * c_prima[i - 1];
-        c_prima[i] = ci / denom;
-        d_prima[i] = (f[i] - ai * d_prima[i - 1]) / denom;
-    }
-
-    /* Paso 2: sustitución hacia atrás */
-    ud[nk - 1] = d_prima[nk - 1];
-    for (int i = nk - 2; i >= 0; i--) {
-        ud[i] = d_prima[i] - c_prima[i] * ud[i + 1];
-    }
-
-    liberar_vector(c_prima);
-    liberar_vector(d_prima);
-}
-
-/* =========================================================
  * ITERACIÓN DE JACOBI
  * ========================================================= */
 
@@ -279,48 +235,6 @@ int jacobi(int nk, double *A, double *f, double *u, double tol) {
 }
 
 /* =========================================================
- * IMPRESIÓN DE RESULTADOS
- * ========================================================= */
-
-/*
- * imprimir_tabla: muestra la tabla comparativa de soluciones
- *   (exacta, directa, Jacobi) para cada nodo de la malla.
- */
-void imprimir_tabla(double *xk, double *uek, double *udk, double *ujk, int nk) {
-    printf("\n  %4s  %10s  %12s  %12s  %12s\n",
-           "I", "X", "U_Exact", "U_Direct", "U_Jacobi");
-    printf("  ----  ----------  ------------  ------------  ------------\n");
-    for (int i = 0; i < nk; i++) {
-        printf("  %4d  %10.4f  %12.4g  %12.4g  %12.4g\n",
-               i + 1, xk[i], uek[i], udk[i], ujk[i]);
-    }
-}
-
-/*
- * imprimir_errores: muestra estadísticas de error del sistema resuelto.
- */
-void imprimir_errores(int k, int nk, double tol, int it_num,
-                      double *udk, double *ujk, double *uek) {
-    double *diff_jd = crear_vector(nk);
-    double *diff_je = crear_vector(nk);
-
-    for (int i = 0; i < nk; i++) {
-        diff_jd[i] = udk[i] - ujk[i];
-        diff_je[i] = uek[i] - ujk[i];
-    }
-
-    printf("\n  Índice de malla K             : %d\n", k);
-    printf("  Tamaño del sistema NK         : %d\n", nk);
-    printf("  Tolerancia residual RMS       : %g\n", tol);
-    printf("  Iteraciones de Jacobi         : %d\n", it_num);
-    printf("  Error RMS Jacobi vs Directo   : %g\n", norma_rms(diff_jd, nk));
-    printf("  Error RMS Jacobi vs Exacto    : %g\n", norma_rms(diff_je, nk));
-
-    liberar_vector(diff_jd);
-    liberar_vector(diff_je);
-}
-
-/* =========================================================
  * PROGRAMA PRINCIPAL
  * ========================================================= */
 
@@ -347,8 +261,6 @@ int main(int argc, char *argv[]) {
     /* --- Reserva de memoria --- */
     double *xk  = crear_vector(nk);   /* Nodos de la malla         */
     double *fk  = crear_vector(nk);   /* Término de forzamiento    */
-    double *uek = crear_vector(nk);   /* Solución exacta continua  */
-    double *udk = crear_vector(nk);   /* Solución directa          */
     double *ujk = crear_vector(nk);   /* Solución Jacobi           */
     double *A   = crear_matriz(nk);   /* Matriz del sistema        */
 
@@ -356,14 +268,6 @@ int main(int argc, char *argv[]) {
     construir_malla(xk, nk, a, b);
     construir_rhs(fk, xk, nk, ua, ub);
     construir_matriz_A(A, nk, hk);
-
-    /* --- Solución exacta del problema continuo --- */
-    for (int i = 0; i < nk; i++) {
-        uek[i] = exact(xk[i]);
-    }
-
-    /* --- Solución directa (Thomas) --- */
-    resolver_directo(A, fk, udk, nk);
 
     /* --- Solución con Jacobi --- */
     /* ujk ya está en cero por calloc → punto de partida x0 = 0 */
@@ -379,8 +283,6 @@ int main(int argc, char *argv[]) {
     /* --- Liberación de memoria --- */
     liberar_vector(xk);
     liberar_vector(fk);
-    liberar_vector(uek);
-    liberar_vector(udk);
     liberar_vector(ujk);
     liberar_matriz(A);
 
