@@ -1,0 +1,252 @@
+[
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.889
+  },
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.887
+  },
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.89
+  },
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.921
+  },
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.889
+  },
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.837
+  },
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.907
+  },
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.884
+  },
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.886
+  },
+  {
+    "exponente_k": 7,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 1.898
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 29.804
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 30.356
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 30.056
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 29.732
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 29.228
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 29.064
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 29.812
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 30.444
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 29.691
+  },
+  {
+    "exponente_k": 8,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 29.603
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 471.069
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 452.562
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 463.201
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 470.683
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 474.254
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 463.869
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 469.623
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 468.426
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 473.405
+  },
+  {
+    "exponente_k": 9,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 455.734
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 7431.101
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 7125.033
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 6962.589
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 7258.411
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 7213.015
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 7476.327
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 7445.21
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 7168.45
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 7472.116
+  },
+  {
+    "exponente_k": 10,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 7200.319
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 114801.639
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 114324.031
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 115263.166
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 116882.864
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 116468.352
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 115804.736
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 116494.881
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 116100.532
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 113557.933
+  },
+  {
+    "exponente_k": 11,
+    "num_procesos": 1,
+    "tiempo_ejecucion_s": 113350.046
+  }
+]
