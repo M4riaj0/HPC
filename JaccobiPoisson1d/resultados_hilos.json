@@ -1,0 +1,5 @@
+[
+{"exponente_k":7,"num_hilos":2,"tiempo_ejecucion_s":0.972146}
+{"exponente_k":8,"num_hilos":2,"tiempo_ejecucion_s":9.953410}
+{"exponente_k":9,"num_hilos":2,"tiempo_ejecucion_s":138.194961}
+{"exponente_k":10,"num_hilos":2,"tiempo_ejecucion_s":2136.820134}

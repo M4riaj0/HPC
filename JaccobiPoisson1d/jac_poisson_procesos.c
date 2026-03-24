@@ -198,7 +198,7 @@ void jacobi_worker_proceso(datos_compartidos_t *datos, int id_proceso) {
  * ========================================================= */
 
 int jacobi_paralelo(int nk, double *A, double *f, double *u, double tol, int num_procesos) {
-    const char *mmap_file = "/dev/shm/jacobi_mmap_XXXXXX";
+    const char *mmap_file = "/tmp/jacobi_mmap_XXXXXX";
     char mmap_fname[256];
     strcpy(mmap_fname, mmap_file);
     
