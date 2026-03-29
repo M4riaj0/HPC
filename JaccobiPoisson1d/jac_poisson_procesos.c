@@ -198,7 +198,7 @@ void jacobi_worker_proceso(datos_compartidos_t *datos, int id_proceso) {
  * ========================================================= */
 
 int jacobi_paralelo(int nk, double *A, double *f, double *u, double tol, int num_procesos) {
-    const char *mmap_file = "/dev/shm/jacobi_mmap_XXXXXX";
+    const char *mmap_file = "/tmp/jacobi_mmap_XXXXXX";
     char mmap_fname[256];
     strcpy(mmap_fname, mmap_file);
     
@@ -285,37 +285,6 @@ int jacobi_paralelo(int nk, double *A, double *f, double *u, double tol, int num
 }
 
 /* =========================================================
- * SOLUCIÓN DIRECTA
- * ========================================================= */
-
-void resolver_directo(double *A, double *f, double *ud, int nk) {
-    double *c_prima = crear_vector(nk);
-    double *d_prima = crear_vector(nk);
-
-    double b0 = MAT(A, 0, 0, nk);
-    c_prima[0] = (nk > 1) ? MAT(A, 0, 1, nk) / b0 : 0.0;
-    d_prima[0] = f[0] / b0;
-
-    for (int i = 1; i < nk; i++) {
-        double ai = MAT(A, i, i - 1, nk);
-        double bi = MAT(A, i, i,     nk);
-        double ci = (i < nk - 1) ? MAT(A, i, i + 1, nk) : 0.0;
-
-        double denom = bi - ai * c_prima[i - 1];
-        c_prima[i] = ci / denom;
-        d_prima[i] = (f[i] - ai * d_prima[i - 1]) / denom;
-    }
-
-    ud[nk - 1] = d_prima[nk - 1];
-    for (int i = nk - 2; i >= 0; i--) {
-        ud[i] = d_prima[i] - c_prima[i] * ud[i + 1];
-    }
-
-    liberar_vector(c_prima);
-    liberar_vector(d_prima);
-}
-
-/* =========================================================
  * PROGRAMA PRINCIPAL
  * ========================================================= */
 
@@ -342,20 +311,12 @@ int main(int argc, char *argv[]) {
 
     double *xk  = crear_vector(nk);
     double *fk  = crear_vector(nk);
-    double *uek = crear_vector(nk);
-    double *udk = crear_vector(nk);
     double *ujk = crear_vector(nk);
     double *A   = crear_matriz(nk);
 
     construir_malla(xk, nk, a, b);
     construir_rhs(fk, xk, nk, ua, ub);
     construir_matriz_A(A, nk, hk);
-
-    for (int i = 0; i < nk; i++) {
-        uek[i] = exact(xk[i]);
-    }
-
-    resolver_directo(A, fk, udk, nk);
 
     struct timespec inicio, fin;
     clock_gettime(CLOCK_MONOTONIC, &inicio);
@@ -369,8 +330,6 @@ int main(int argc, char *argv[]) {
 
     liberar_vector(xk);
     liberar_vector(fk);
-    liberar_vector(uek);
-    liberar_vector(udk);
     liberar_vector(ujk);
     liberar_matriz(A);
 

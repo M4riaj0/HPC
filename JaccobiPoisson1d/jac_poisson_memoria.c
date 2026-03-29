@@ -108,35 +108,6 @@ void construir_tridiagonal(MatrizTridiagonal *T, int nk, double hk) {
 }
 
 /* =========================================================
- * SOLUCIÓN DIRECTA (algoritmo de Thomas para tridiagonales)
- * También aprovecha la estructura tridiagonal: O(NK) pasos
- * ========================================================= */
-
-void resolver_directo(MatrizTridiagonal *T, double *f, double *ud, int nk) {
-    double *c_prima = crear_vector(nk);
-    double *d_prima = crear_vector(nk);
-
-    /* Paso 1: barrido hacia adelante */
-    c_prima[0] = T->sup[0] / T->diag[0];
-    d_prima[0] = f[0]      / T->diag[0];
-
-    for (int i = 1; i < nk; i++) {
-        double denom = T->diag[i] - T->sub[i] * c_prima[i - 1];
-        c_prima[i]   = T->sup[i] / denom;
-        d_prima[i]   = (f[i] - T->sub[i] * d_prima[i - 1]) / denom;
-    }
-
-    /* Paso 2: sustitución hacia atrás */
-    ud[nk - 1] = d_prima[nk - 1];
-    for (int i = nk - 2; i >= 0; i--) {
-        ud[i] = d_prima[i] - c_prima[i] * ud[i + 1];
-    }
-
-    liberar_vector(c_prima);
-    liberar_vector(d_prima);
-}
-
-/* =========================================================
  * ITERACIÓN DE JACOBI
  * ========================================================= */
 
@@ -248,8 +219,6 @@ int main(int argc, char *argv[]) {
      * en vez de NK×NK doubles de la versión original */
     double           *xk  = crear_vector(nk);
     double           *fk  = crear_vector(nk);
-    double           *uek = crear_vector(nk);
-    double           *udk = crear_vector(nk);
     double           *ujk = crear_vector(nk);
     MatrizTridiagonal T   = crear_tridiagonal(nk);  /* ← 3 vectores */
 
@@ -257,14 +226,6 @@ int main(int argc, char *argv[]) {
     construir_malla(xk, nk, a, b);
     construir_rhs(fk, xk, nk, ua, ub);
     construir_tridiagonal(&T, nk, hk);              /* ← O(NK) en vez de O(NK²) */
-
-    /* --- Solución exacta --- */
-    for (int i = 0; i < nk; i++) {
-        uek[i] = exact(xk[i]);
-    }
-
-    /* --- Solución directa (Thomas) --- */
-    resolver_directo(&T, fk, udk, nk);
 
     clock_t inicio = clock();
     int it_num = jacobi(nk, &T, fk, ujk, tol);
@@ -277,8 +238,6 @@ int main(int argc, char *argv[]) {
     /* --- Liberación de memoria --- */
     liberar_vector(xk);
     liberar_vector(fk);
-    liberar_vector(uek);
-    liberar_vector(udk);
     liberar_vector(ujk);
     liberar_tridiagonal(&T);                        /* ← libera los 3 vectores */
 
