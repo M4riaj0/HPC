@@ -1,0 +1,28 @@
+  { "n": 3000, "hilos": 4, "tiempo": 1.802088 },
+Process 87798 is not debuggable. Due to security restrictions, leaks can only show or save contents of readonly memory of restricted processes.
+
+Process:         multi_openMP [87798]
+Path:            /Users/USER/Desktop/*/multi_openMP
+Load Address:    0x102d14000
+Identifier:      multi_openMP
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  leaks [87797]
+Target Type:     live task
+
+Date/Time:       2026-04-25 17:43:54.560 -0500
+Launch Time:     2026-04-25 17:43:52.480 -0500
+OS Version:      macOS 15.7.4 (24G517)
+Report Version:  7
+Analysis Tool:   /usr/bin/leaks
+
+Physical footprint:         2608K
+Physical footprint (peak):  208.6M
+Idle exit:                  untracked
+----
+
+leaks Report Version: 4.0, multi-line stacks
+Process 87798: 201 nodes malloced for 21 KB
+Process 87798: 0 leaks for 0 total leaked bytes.
+

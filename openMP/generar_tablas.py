@@ -15,7 +15,31 @@ def load_json(filename):
 # ---------------------------------------------------------------------------
 # Load data
 # ---------------------------------------------------------------------------
-hilos_data = load_json('resultados_openMP.json')
+sec_data = load_json('resultados_sec_pc2.json')
+hilos_data = load_json('resultados_openMP_pc2.json')
+
+# ---------------------------------------------------------------------------
+# Secuencial: 10 runs x 5 dimensions
+# ---------------------------------------------------------------------------
+dimensiones_sec = [1000, 2000, 3000, 4000, 5000]
+n_runs = 10
+
+# Group by dimension preserving order
+sec_by_dim = {d: [] for d in dimensiones_sec}
+for entry in sec_data:
+    sec_by_dim[entry['n']].append(entry['tiempo'])
+
+# Build table data: rows = runs 1..10 + Promedio
+sec_table = []
+for i in range(n_runs):
+    row = [sec_by_dim[d][i] for d in dimensiones_sec]
+    sec_table.append(row)
+sec_promedios = [np.mean(sec_by_dim[d]) for d in dimensiones_sec]
+sec_table.append(sec_promedios)
+
+row_labels_sec = [str(i+1) for i in range(n_runs)] + ['Promedio']
+col_labels_sec = [str(d) for d in dimensiones_sec]
+
 
 # ---------------------------------------------------------------------------
 # Hilos: 5 thread counts x 10 runs x 5 dimensions
@@ -130,7 +154,7 @@ for idx, h in enumerate(hilos_counts):
 
     render_table(
         hilos_table, row_labels, col_labels,
-        f'Tabla {idx+1}: Resultados de la ejecución con {h} hilos.',
+        f'Tabla {idx+1}: Resultados de la ejecución con {h} hilos en pc2.',
         f'tabla_hilos_{h}.png'
     )
 
@@ -159,7 +183,7 @@ ax.legend(loc='upper left', fontsize=9, frameon=True)
 
 # Title above figure (italic, like reference)
 fig.text(0.05, 0.98,
-         'Gráfico 1. Tiempo de ejecución en función de las dimensiones de la matriz con OpenMP.',
+         'Gráfico 1. Tiempo de ejecución en función de las dimensiones de la matriz con OpenMP para PC2.',
          fontsize=11, fontstyle='italic', verticalalignment='top', fontfamily='serif')
 
 plt.tight_layout(rect=[0, 0, 1, 0.95])
