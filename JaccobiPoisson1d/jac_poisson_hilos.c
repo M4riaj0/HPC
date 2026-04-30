@@ -80,22 +80,6 @@ void construir_matriz_A(double *A, int nk, double hk) {
     }
     MAT(A,0,0,nk) = 1.0; MAT(A,nk-1,nk-1,nk) = 1.0;
 }
-void resolver_directo(double *A, double *f, double *ud, int nk) {
-    double *cp = crear_vector(nk), *dp = crear_vector(nk);
-    double b0 = MAT(A,0,0,nk);
-    cp[0] = (nk>1) ? MAT(A,0,1,nk)/b0 : 0.0;
-    dp[0] = f[0]/b0;
-    for (int i = 1; i < nk; i++) {
-        double ai=MAT(A,i,i-1,nk), bi=MAT(A,i,i,nk);
-        double ci=(i<nk-1)?MAT(A,i,i+1,nk):0.0;
-        double den = bi - ai*cp[i-1];
-        cp[i] = ci/den; dp[i] = (f[i]-ai*dp[i-1])/den;
-    }
-    ud[nk-1] = dp[nk-1];
-    for (int i = nk-2; i >= 0; i--) ud[i] = dp[i] - cp[i]*ud[i+1];
-    liberar_vector(cp); liberar_vector(dp);
-}
-
 void *jacobi_hilo(void *arg) {
     DatosHilo *dh = (DatosHilo *)arg;
     DatosCompartidos *d = dh->datos;
@@ -187,14 +171,12 @@ int main(int argc, char *argv[]) {
     double hk = (b-a)/(double)(nk-1);
 
     double *xk=crear_vector(nk), *fk=crear_vector(nk);
-    double *uek=crear_vector(nk), *udk=crear_vector(nk), *ujk=crear_vector(nk);
+    double *ujk=crear_vector(nk);
     double *A=crear_matriz(nk);
 
     construir_malla(xk,nk,a,b);
     construir_rhs(fk,xk,nk,ua,ub);
     construir_matriz_A(A,nk,hk);
-    for (int i=0;i<nk;i++) uek[i]=exact(xk[i]);
-    resolver_directo(A,fk,udk,nk);
 
     struct timespec ini,fin_t;
 
@@ -208,7 +190,7 @@ int main(int argc, char *argv[]) {
            k,num_hilos,tiempo);
 
     liberar_vector(xk);liberar_vector(fk);
-    liberar_vector(uek);liberar_vector(udk);liberar_vector(ujk);
+    liberar_vector(ujk);
     liberar_matriz(A);
     return EXIT_SUCCESS;
 }

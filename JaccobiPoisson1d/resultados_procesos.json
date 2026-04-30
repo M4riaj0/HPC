@@ -1,0 +1,5 @@
+[
+{"exponente_k": 7, "num_procesos": 2, "tiempo_ejecucion_s": 0.904705}
+{"exponente_k": 8, "num_procesos": 2, "tiempo_ejecucion_s": 10.197493}
+{"exponente_k": 9, "num_procesos": 2, "tiempo_ejecucion_s": 169.352442}
+{"exponente_k": 10, "num_procesos": 2, "tiempo_ejecucion_s": 2977.886864}
