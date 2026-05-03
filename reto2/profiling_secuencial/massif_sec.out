@@ -1,0 +1,93 @@
+desc: --massif-out-file=massif_sec.out
+cmd: ./cell_automation_sec 100000 0.5
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=158115
+mem_heap_B=9832
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=159499
+mem_heap_B=409832
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=159537
+mem_heap_B=809832
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=2454254148
+mem_heap_B=810856
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=2454257554
+mem_heap_B=810856
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=peak
+n4: 810856 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 400000 0x10948A: initialize_road (cell_automation_sec.c:15)
+  n0: 400000 0x10921A: main (cell_automation_sec.c:80)
+ n1: 400000 0x109496: initialize_road (cell_automation_sec.c:16)
+  n0: 400000 0x10921A: main (cell_automation_sec.c:80)
+ n1: 9832 0x498404F: monstartup (gmon.c:175)
+  n1: 9832 0x109370: __gmon_start__ (in /home/usuario/HPC/reto2/cell_automation_sec)
+   n1: 9832 0x109015: ??? (in /home/usuario/HPC/reto2/cell_automation_sec)
+    n0: 9832 0x109334: (below main) (in /home/usuario/HPC/reto2/cell_automation_sec)
+ n0: 1024 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=6
+#-----------
+time=2454257554
+mem_heap_B=410856
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=2454257584
+mem_heap_B=10856
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=2454261512
+mem_heap_B=1024
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=2454264440
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
