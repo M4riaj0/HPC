@@ -1,0 +1,28 @@
+  {"n": 1000000, "density": 0.50, "threads": 8, "time": 0.147247},
+Process 42388 is not debuggable. Due to security restrictions, leaks can only show or save contents of readonly memory of restricted processes.
+
+Process:         cell_automation_openMP [42388]
+Path:            /Users/USER/Desktop/*/cell_automation_openMP
+Load Address:    0x102210000
+Identifier:      cell_automation_openMP
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  leaks [42387]
+Target Type:     live task
+
+Date/Time:       2026-05-04 13:56:21.630 -0500
+Launch Time:     2026-05-04 13:56:21.333 -0500
+OS Version:      macOS 15.7.4 (24G517)
+Report Version:  7
+Analysis Tool:   /usr/bin/leaks
+
+Physical footprint:         2576K
+Physical footprint (peak):  10.2M
+Idle exit:                  untracked
+----
+
+leaks Report Version: 4.0, multi-line stacks
+Process 42388: 208 nodes malloced for 23 KB
+Process 42388: 0 leaks for 0 total leaked bytes.
+

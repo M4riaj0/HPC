@@ -1,0 +1,417 @@
+Analysis of sampling cell_automation_openMP (pid 42385) every 1 millisecond
+Process:         cell_automation_openMP [42385]
+Path:            /Users/USER/Desktop/*/cell_automation_openMP
+Load Address:    0x104844000
+Identifier:      cell_automation_openMP
+Version:         ???
+Code Type:       ARM64
+Parent Process:  bash [42354]
+Target Type:     live task
+
+Date/Time:       2026-05-04 13:56:21.077 -0500
+Launch Time:     2026-05-04 13:56:21.039 -0500
+OS Version:      macOS 15.7.4 (24G517)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+----
+
+Call graph:
+    21 Thread_14964006: Main Thread
+    + 13 _dyld_start  (in dyld) + 0  [0x104ba47c0]
+    + 6 start  (in dyld) + 6000  [0x18f042b4c]
+    + ! 6 dyld4::start(dyld4::KernelArgs*, void*, void*)::$_0::operator()() const  (in dyld) + 236  [0x18f0431d8]
+    + !   3 dyld4::prepare(dyld4::APIs&, mach_o::Header const*)  (in dyld) + 2976  [0x18f043d8c]
+    + !   : 3 dyld4::RuntimeState::notifyDebuggerLoad(std::span<dyld4::Loader const*, 18446744073709551615ul> const&)  (in dyld) + 432  [0x18f051fd0]
+    + !   :   3 dyld4::ExternallyViewableState::addImages(lsl::Allocator&, lsl::Allocator&, std::span<dyld4::ExternallyViewableState::ImageInfo, 18446744073709551615ul> const&)  (in dyld) + 544  [0x18f0889c0]
+    + !   :     3 dyld4::ExternallyViewableState::triggerNotifications(dyld_image_mode, unsigned int, dyld_image_info const*)  (in dyld) + 264  [0x18f0885b0]
+    + !   :       3 dyld4::RemoteNotificationResponder::blockOnSynchronousEvent(unsigned int)  (in dyld) + 48  [0x18f0729a8]
+    + !   :         3 dyld4::RemoteNotificationResponder::sendMessage(int, unsigned int, mach_msg_header_t*)  (in dyld) + 220  [0x18f07261c]
+    + !   :           3 mach_msg_overwrite  (in dyld) + 244  [0x18f0c053c]
+    + !   :             3 mach_msg2_internal  (in dyld) + 76  [0x18f0c0390]
+    + !   :               3 mach_msg2_trap  (in dyld) + 8  [0x18f03d72c]
+    + !   2 dyld4::prepare(dyld4::APIs&, mach_o::Header const*)  (in dyld) + 956  [0x18f0435a8]
+    + !   : 2 dyld4::JustInTimeLoader::loadDependents(Diagnostics&, dyld4::RuntimeState&, dyld4::Loader::LoadOptions const&)  (in dyld) + 164  [0x18f0653e4]
+    + !   :   2 mach_o::Header::forEachLinkedDylib(void (char const*, mach_o::LinkedDylibAttributes, mach_o::Version32, mach_o::Version32, bool, bool&) block_pointer) const  (in dyld) + 160  [0x18f0b9fe0]
+    + !   :     2 mach_o::Header::forEachLoadCommand(void (load_command const*, bool&) block_pointer) const  (in dyld) + 208  [0x18f0b8358]
+    + !   :       2 invocation function for block in mach_o::Header::forEachLinkedDylib(void (char const*, mach_o::LinkedDylibAttributes, mach_o::Version32, mach_o::Version32, bool, bool&) block_pointer) const  (in dyld) + 136  [0x18f0ba2f4]
+    + !   :         2 invocation function for block in dyld4::JustInTimeLoader::loadDependents(Diagnostics&, dyld4::RuntimeState&, dyld4::Loader::LoadOptions const&)  (in dyld) + 456  [0x18f0656d4]
+    + !   :           2 dyld4::Loader::getLoader(Diagnostics&, dyld4::RuntimeState&, char const*, dyld4::Loader::LoadOptions const&)  (in dyld) + 920  [0x18f05b3b0]
+    + !   :             2 dyld4::Loader::forEachPath(Diagnostics&, dyld4::RuntimeState&, char const*, dyld4::Loader::LoadOptions const&, void (char const*, dyld4::ProcessConfig::PathOverrides::Type, bool&) block_pointer)  (in dyld) + 260  [0x18f05ab18]
+    + !   :               2 dyld4::ProcessConfig::PathOverrides::forEachPathVariant(char const*, mach_o::Platform, bool, bool, bool&, void (char const*, dyld4::ProcessConfig::PathOverrides::Type, bool&) block_pointer) const  (in dyld) + 1508  [0x18f046118]
+    + !   :                 2 dyld4::Loader::forEachResolvedAtPathVar(dyld4::RuntimeState&, char const*, dyld4::Loader::LoadOptions const&, dyld4::ProcessConfig::PathOverrides::Type, bool&, void (char const*, dyld4::ProcessConfig::PathOverrides::Type, bool&) block_pointer)  (in dyld) + 764  [0x18f05afd8]
+    + !   :                   2 invocation function for block in dyld4::Loader::getLoader(Diagnostics&, dyld4::RuntimeState&, char const*, dyld4::Loader::LoadOptions const&)  (in dyld) + 2884  [0x18f05c2cc]
+    + !   :                     2 dyld4::Loader::makeDiskLoader(Diagnostics&, dyld4::RuntimeState&, char const*, dyld4::Loader::LoadOptions const&, bool, unsigned int, mach_o::Layout const*)  (in dyld) + 176  [0x18f05a8b0]
+    + !   :                       1 dyld4::JustInTimeLoader::makeJustInTimeLoaderDisk(Diagnostics&, dyld4::RuntimeState&, char const*, dyld4::Loader::LoadOptions const&, bool, unsigned int, mach_o::Layout const*)  (in dyld) + 832  [0x18f0679b4]
+    + !   :                       | 1 dyld4::SyscallDelegate::registerSignature(Diagnostics&, char const*, char const*, int, unsigned long long, unsigned int, unsigned int) const  (in dyld) + 168  [0x18f06ca34]
+    + !   :                       |   1 fcntl  (in dyld) + 88  [0x18f03fec0]
+    + !   :                       |     1 __fcntl  (in dyld) + 8  [0x18f03fef4]
+    + !   :                       1 dyld4::JustInTimeLoader::makeJustInTimeLoaderDisk(Diagnostics&, dyld4::RuntimeState&, char const*, dyld4::Loader::LoadOptions const&, bool, unsigned int, mach_o::Layout const*)  (in dyld) + 1108  [0x18f067ac8]
+    + !   :                         1 dyld4::JustInTimeLoader::withRegions(dyld3::MachOFile const*, void (dyld3::Array<dyld4::Loader::Region> const&) block_pointer)  (in dyld) + 296  [0x18f067384]
+    + !   :                           1 invocation function for block in dyld4::JustInTimeLoader::makeJustInTimeLoaderDisk(Diagnostics&, dyld4::RuntimeState&, char const*, dyld4::Loader::LoadOptions const&, bool, unsigned int, mach_o::Layout const*)  (in dyld) + 76  [0x18f067b54]
+    + !   :                             1 dyld4::Loader::mapSegments(Diagnostics&, dyld4::RuntimeState&, char const*, int, unsigned long long, dyld4::Loader::CodeSignatureInFile const&, bool, dyld3::Array<dyld4::Loader::Region> const&, bool, bool, dyld4::Loader::FileValidationInfo const&)  (in dyld) + 296  [0x18f05ccd8]
+    + !   :                               1 dyld4::SyscallDelegate::fcntl(int, int, void*) const  (in dyld) + 32  [0x18f06c980]
+    + !   :                                 1 fcntl  (in dyld) + 88  [0x18f03fec0]
+    + !   :                                   1 __fcntl  (in dyld) + 8  [0x18f03fef4]
+    + !   1 dyld4::prepare(dyld4::APIs&, mach_o::Header const*)  (in dyld) + 1644  [0x18f043858]
+    + !     1 dyld4::JustInTimeLoader::applyFixups(Diagnostics&, dyld4::RuntimeState&, dyld4::DyldCacheDataConstLazyScopedWriter&, bool, lsl::Vector<std::pair<dyld4::Loader const*, char const*>>*) const  (in dyld) + 676  [0x18f065f7c]
+    + !       1 dyld4::Loader::applyFixupsGeneric(Diagnostics&, dyld4::RuntimeState&, unsigned long long, dyld3::Array<void const*> const&, dyld3::Array<void const*> const&, bool, dyld3::Array<dyld4::Loader::MissingFlatLazySymbol> const&) const  (in dyld) + 192  [0x18f05dec4]
+    + !         1 dyld4::Loader::setUpPageInLinking(Diagnostics&, dyld4::RuntimeState&, unsigned long, unsigned long long, dyld3::Array<void const*> const&) const  (in dyld) + 560  [0x18f05d48c]
+    + !           1 invocation function for block in dyld4::Loader::setUpPageInLinking(Diagnostics&, dyld4::RuntimeState&, unsigned long, unsigned long long, dyld3::Array<void const*> const&) const  (in dyld) + 380  [0x18f05d718]
+    + !             1 dyld4::setUpPageInLinkingRegions(dyld4::RuntimeState&, dyld4::Loader const*, unsigned long, unsigned short, unsigned short, bool, dyld3::Array<dyld4::PageInLinkingRange> const&, dyld3::Array<void const*> const&)  (in dyld) + 856  [0x18f05dd54]
+    + !               1 dyld4::dyld_map_with_linking_np(mwl_region const*, unsigned int, mwl_info_hdr const*, unsigned int)  (in dyld) + 548  [0x18f063450]
+    + !                 1 dyld4::fixupPage64(void*, mwl_info_hdr const*, dyld_chained_starts_in_segment const*, unsigned int, bool)  (in dyld) + 84  [0x18f06368c]
+    + 1 start  (in dyld) + 5108  [0x104ba67d0]
+    + ! 1 dyld4::ExternallyViewableState::createMinimalInfo(lsl::Allocator&, unsigned long long, char const*, unsigned long long, char const*, DyldSharedCache const*)  (in dyld) + 1672  [0x104bebddc]
+    + !   1 dyld4::ExternallyViewableState::triggerNotifications(dyld_image_mode, unsigned int, dyld_image_info const*)  (in dyld) + 264  [0x104bec5b0]
+    + !     1 dyld4::RemoteNotificationResponder::blockOnSynchronousEvent(unsigned int)  (in dyld) + 48  [0x104bd69a8]
+    + !       1 dyld4::RemoteNotificationResponder::sendMessage(int, unsigned int, mach_msg_header_t*)  (in dyld) + 220  [0x104bd661c]
+    + !         1 mach_msg_overwrite  (in dyld) + 244  [0x104c2453c]
+    + !           1 mach_msg2_internal  (in dyld) + 76  [0x104c24390]
+    + !             1 mach_msg2_trap  (in dyld) + 8  [0x104ba172c]
+    + 1 start  (in dyld) + 3320  [0x18f0420d4]
+    +   1 dyld4::ExternallyViewableState::createMinimalInfo(lsl::Allocator&, unsigned long long, char const*, unsigned long long, char const*, DyldSharedCache const*)  (in dyld) + 1672  [0x18f087ddc]
+    +     1 dyld4::ExternallyViewableState::triggerNotifications(dyld_image_mode, unsigned int, dyld_image_info const*)  (in dyld) + 264  [0x18f0885b0]
+    +       1 dyld4::RemoteNotificationResponder::blockOnSynchronousEvent(unsigned int)  (in dyld) + 48  [0x18f0729a8]
+    +         1 dyld4::RemoteNotificationResponder::sendMessage(int, unsigned int, mach_msg_header_t*)  (in dyld) + 220  [0x18f07261c]
+    +           1 mach_msg_overwrite  (in dyld) + 244  [0x18f0c053c]
+    +             1 mach_msg2_internal  (in dyld) + 76  [0x18f0c0390]
+    +               1 mach_msg2_trap  (in dyld) + 8  [0x18f03d72c]
+    126 Thread_14964006   DispatchQueue_1: com.apple.main-thread  (serial)
+    + 125 start  (in dyld) + 6076  [0x18f042b98]
+    + ! 115 main  (in cell_automation_openMP) + 232  [0x104847bc8]  cell_automation_openMP.c:93
+    + ! : 77 GOMP_parallel  (in libgomp.1.dylib) + 76  [0x1048c6a54]
+    + ! : | 42 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 200,140,...  [0x104847968,0x10484792c,...]  cell_automation_openMP.c:58
+    + ! : | 29 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 108  [0x10484790c]  cell_automation_openMP.c:45
+    + ! : | 5 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 192  [0x104847960]  cell_automation_openMP.c:50
+    + ! : | 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 120  [0x104847918]  cell_automation_openMP.c:46
+    + ! : 22 GOMP_parallel  (in libgomp.1.dylib) + 68  [0x1048c6a4c]
+    + ! : | 22 gomp_team_start  (in libgomp.1.dylib) + 1552  [0x1048ce5d0]
+    + ! : |   18 gomp_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0098]
+    + ! : |   + 18 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    + ! : |   +   16 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    + ! : |   +   ! 16 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    + ! : |   +   1 __psynch_cvwait  (in libsystem_kernel.dylib) + 40  [0x18f3a53ec]
+    + ! : |   +   1 _pthread_cond_wait  (in libsystem_pthread.dylib) + 1124  [0x18f3e4128]
+    + ! : |   +     1 _pthread_mutex_firstfit_lock_slow  (in libsystem_pthread.dylib) + 220  [0x18f3de840]
+    + ! : |   +       1 _pthread_mutex_firstfit_lock_wait  (in libsystem_pthread.dylib) + 84  [0x18f3e0e14]
+    + ! : |   +         1 __psynch_mutexwait  (in libsystem_kernel.dylib) + 8  [0x18f3a489c]
+    + ! : |   3 gomp_barrier_wait_end  (in libgomp.1.dylib) + 60  [0x1048d007c]
+    + ! : |   + 3 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    + ! : |   +   3 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    + ! : |   +     3 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    + ! : |   1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    + ! : |     1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    + ! : 16 gomp_team_end  (in libgomp.1.dylib) + 44  [0x1048cf13c]
+    + ! :   13 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 160  [0x1048d01b0]
+    + ! :   + 13 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    + ! :   +   13 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    + ! :   +     13 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    + ! :   2 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 104  [0x1048d0178]
+    + ! :   + 2 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    + ! :   +   2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    + ! :   +     2 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    + ! :   1 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0168]
+    + ! :     1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    + ! :       1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    + ! 8 main  (in cell_automation_openMP) + 372  [0x104847c54]  cell_automation_openMP.c:83
+    + ! : 3 initialize_road  (in cell_automation_openMP) + 156  [0x104847a64]  cell_automation_openMP.c:27
+    + ! : 3 initialize_road  (in cell_automation_openMP) + 120  [0x104847a40]  cell_automation_openMP.c:30
+    + ! : 2 initialize_road  (in cell_automation_openMP) + 124  [0x104847a44]  cell_automation_openMP.c:25
+    + ! 1 main  (in cell_automation_openMP) + 304  [0x104847c10]  cell_automation_openMP.c:104
+    + ! : 1 cleanup  (in cell_automation_openMP) + 24  [0x1048479b8]  cell_automation_openMP.c:15
+    + ! :   1 free_medium  (in libsystem_malloc.dylib) + 536  [0x18f1ea6d0]
+    + ! :     1 mvm_madvise_free_plat  (in libsystem_malloc.dylib) + 108  [0x18f1fef48]
+    + ! :       1 <deduplicated_symbol>  (in libsystem_malloc.dylib) + 16  [0x18f1feec0]
+    + ! :         1 madvise  (in libsystem_kernel.dylib) + 8  [0x18f3a4870]
+    + ! 1 main  (in cell_automation_openMP) + 148  [0x104847b74]  cell_automation_openMP.c:90
+    + !   1 omp_get_wtime  (in libgomp.1.dylib) + 0  [0x1048d0520]
+    + 1 start  (in dyld) + 6000  [0x18f042b4c]
+    +   1 dyld4::start(dyld4::KernelArgs*, void*, void*)::$_0::operator()() const  (in dyld) + 236  [0x18f0431d8]
+    +     1 dyld4::prepare(dyld4::APIs&, mach_o::Header const*)  (in dyld) + 3092  [0x18f043e00]
+    +       1 dyld4::APIs::runAllInitializersForMain()  (in dyld) + 392  [0x18f080a20]
+    +         1 dyld4::Loader::runInitializersBottomUpPlusUpwardLinks(dyld4::RuntimeState&) const  (in dyld) + 716  [0x18f05f77c]
+    +           1 dyld4::Loader::runInitializersBottomUpPlusUpwardLinks(dyld4::RuntimeState&) const::$_0::operator()() const  (in dyld) + 180  [0x18f063bf0]
+    +             1 dyld4::Loader::runInitializersBottomUp(dyld4::RuntimeState&, dyld3::Array<dyld4::Loader const*>&, dyld3::Array<dyld4::Loader const*>&) const  (in dyld) + 212  [0x18f05f400]
+    +               1 dyld4::Loader::runInitializersBottomUp(dyld4::RuntimeState&, dyld3::Array<dyld4::Loader const*>&, dyld3::Array<dyld4::Loader const*>&) const  (in dyld) + 308  [0x18f05f460]
+    +                 1 dyld4::JustInTimeLoader::runInitializers(dyld4::RuntimeState&) const  (in dyld) + 36  [0x18f066670]
+    +                   1 dyld4::Loader::findAndRunAllInitializers(dyld4::RuntimeState&) const  (in dyld) + 176  [0x18f05ecb4]
+    +                     1 dyld3::MachOAnalyzer::forEachInitializer(Diagnostics&, dyld3::MachOAnalyzer::VMAddrConverter const&, void (unsigned int) block_pointer, void const*) const  (in dyld) + 516  [0x18f09b36c]
+    +                       1 mach_o::Header::forEachSection(void (mach_o::Header::SectionInfo const&, bool&) block_pointer) const  (in dyld) + 124  [0x18f0b9a98]
+    +                         1 mach_o::Header::forEachLoadCommand(void (load_command const*, bool&) block_pointer) const  (in dyld) + 208  [0x18f0b8358]
+    +                           1 invocation function for block in mach_o::Header::forEachSection(void (mach_o::Header::SectionInfo const&, bool&) block_pointer) const  (in dyld) + 240  [0x18f0bb5cc]
+    +                             1 invocation function for block in dyld3::MachOAnalyzer::forEachInitializer(Diagnostics&, dyld3::MachOAnalyzer::VMAddrConverter const&, void (unsigned int) block_pointer, void const*) const  (in dyld) + 224  [0x18f09b838]
+    116 Thread_14964029
+    + 116 thread_start  (in libsystem_pthread.dylib) + 8  [0x18f3deb80]
+    +   116 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x18f3e3bc8]
+    +     81 gomp_thread_start  (in libgomp.1.dylib) + 316  [0x1048cde20]
+    +     ! 37 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 140,200,...  [0x10484792c,0x104847968,...]  cell_automation_openMP.c:58
+    +     ! 28 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 108  [0x10484790c]  cell_automation_openMP.c:45
+    +     ! 11 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 192  [0x104847960]  cell_automation_openMP.c:50
+    +     ! 4 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 156  [0x10484793c]  cell_automation_openMP.c:44
+    +     ! 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 120  [0x104847918]  cell_automation_openMP.c:46
+    +     19 gomp_thread_start  (in libgomp.1.dylib) + 288  [0x1048cde04]
+    +     ! 17 gomp_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0098]
+    +     ! : 15 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     ! : | 15 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     ! : |   15 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     ! : 1 _pthread_mutex_firstfit_unlock_slow  (in libsystem_pthread.dylib) + 240  [0x18f3deb08]
+    +     ! : | 1 _pthread_mutex_firstfit_wake  (in libsystem_pthread.dylib) + 28  [0x18f3e0e84]
+    +     ! : |   1 __psynch_mutexdrop  (in libsystem_kernel.dylib) + 8  [0x18f3a4a68]
+    +     ! : 1 pthread_mutex_unlock  (in libsystem_pthread.dylib) + 104  [0x18f3de90c]
+    +     ! 2 gomp_barrier_wait_end  (in libgomp.1.dylib) + 60  [0x1048d007c]
+    +     !   2 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     !     2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     !       2 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     16 gomp_thread_start  (in libgomp.1.dylib) + 324  [0x1048cde28]
+    +       13 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 160  [0x1048d01b0]
+    +       : 13 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +       :   11 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +       :   | 11 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +       :   2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 1124  [0x18f3e4128]
+    +       :     2 _pthread_mutex_firstfit_lock_slow  (in libsystem_pthread.dylib) + 220  [0x18f3de840]
+    +       :       2 _pthread_mutex_firstfit_lock_wait  (in libsystem_pthread.dylib) + 84  [0x18f3e0e14]
+    +       :         2 __psynch_mutexwait  (in libsystem_kernel.dylib) + 8  [0x18f3a489c]
+    +       2 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 104  [0x1048d0178]
+    +       : 2 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +       :   2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +       :     2 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +       1 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0168]
+    +         1 gomp_sem_post  (in libgomp.1.dylib) + 20  [0x1048cfe9c]
+    +           1 DYLD-STUB$$pthread_mutex_lock  (in libgomp.1.dylib) + 0  [0x1048ea078]
+    116 Thread_14964030
+    + 116 thread_start  (in libsystem_pthread.dylib) + 8  [0x18f3deb80]
+    +   116 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x18f3e3bc8]
+    +     85 gomp_thread_start  (in libgomp.1.dylib) + 316  [0x1048cde20]
+    +     ! 49 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 200,140,...  [0x104847968,0x10484792c,...]  cell_automation_openMP.c:58
+    +     ! 26 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 108  [0x10484790c]  cell_automation_openMP.c:45
+    +     ! 6 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 192  [0x104847960]  cell_automation_openMP.c:50
+    +     ! 3 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 120  [0x104847918]  cell_automation_openMP.c:46
+    +     ! 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 156  [0x10484793c]  cell_automation_openMP.c:44
+    +     18 gomp_thread_start  (in libgomp.1.dylib) + 288  [0x1048cde04]
+    +     ! 14 gomp_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0098]
+    +     ! : 14 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     ! :   13 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     ! :   | 13 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     ! :   1 _pthread_cond_wait  (in libsystem_pthread.dylib) + 1124  [0x18f3e4128]
+    +     ! :     1 _pthread_mutex_firstfit_lock_slow  (in libsystem_pthread.dylib) + 220  [0x18f3de840]
+    +     ! :       1 _pthread_mutex_firstfit_lock_wait  (in libsystem_pthread.dylib) + 84  [0x18f3e0e14]
+    +     ! :         1 __psynch_mutexwait  (in libsystem_kernel.dylib) + 8  [0x18f3a489c]
+    +     ! 2 gomp_barrier_wait_end  (in libgomp.1.dylib) + 60  [0x1048d007c]
+    +     ! : 2 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     ! :   2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     ! :     2 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     ! 1 gomp_barrier_wait_end  (in libgomp.1.dylib) + 44  [0x1048d006c]
+    +     ! : 1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    +     ! :   1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    +     ! 1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    +     !   1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 4  [0x18f3a681c]
+    +     13 gomp_thread_start  (in libgomp.1.dylib) + 324  [0x1048cde28]
+    +       10 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 160  [0x1048d01b0]
+    +       : 10 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +       :   10 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +       :     10 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +       2 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 104  [0x1048d0178]
+    +       : 2 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +       :   2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +       :     2 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +       1 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0168]
+    +         1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    +           1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    116 Thread_14964031
+    + 116 thread_start  (in libsystem_pthread.dylib) + 8  [0x18f3deb80]
+    +   116 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x18f3e3bc8]
+    +     81 gomp_thread_start  (in libgomp.1.dylib) + 316  [0x1048cde20]
+    +     ! 35 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 140,200,...  [0x10484792c,0x104847968,...]  cell_automation_openMP.c:58
+    +     ! 34 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 108  [0x10484790c]  cell_automation_openMP.c:45
+    +     ! 8 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 192  [0x104847960]  cell_automation_openMP.c:50
+    +     ! 3 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 120  [0x104847918]  cell_automation_openMP.c:46
+    +     ! 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 156  [0x10484793c]  cell_automation_openMP.c:44
+    +     22 gomp_thread_start  (in libgomp.1.dylib) + 288  [0x1048cde04]
+    +     ! 21 gomp_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0098]
+    +     ! : 21 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     ! :   18 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     ! :   | 18 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     ! :   2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 1124  [0x18f3e4128]
+    +     ! :   | 2 _pthread_mutex_firstfit_lock_slow  (in libsystem_pthread.dylib) + 220  [0x18f3de840]
+    +     ! :   |   2 _pthread_mutex_firstfit_lock_wait  (in libsystem_pthread.dylib) + 84  [0x18f3e0e14]
+    +     ! :   |     2 __psynch_mutexwait  (in libsystem_kernel.dylib) + 8  [0x18f3a489c]
+    +     ! :   1 _pthread_cond_wait  (in libsystem_pthread.dylib) + 600  [0x18f3e3f1c]
+    +     ! :     1 _pthread_mutex_droplock  (in libsystem_pthread.dylib) + 396  [0x18f3e0af8]
+    +     ! 1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    +     !   1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    +     13 gomp_thread_start  (in libgomp.1.dylib) + 324  [0x1048cde28]
+    +       10 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 160  [0x1048d01b0]
+    +       : 9 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +       : | 9 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +       : |   9 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +       : 1 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +       1 gomp_team_barrier_wait  (in libgomp.1.dylib) + 20  [0x1048d0378]
+    +       : 1 _pthread_mutex_firstfit_lock_slow  (in libsystem_pthread.dylib) + 220  [0x18f3de840]
+    +       :   1 _pthread_mutex_firstfit_lock_wait  (in libsystem_pthread.dylib) + 84  [0x18f3e0e14]
+    +       :     1 __psynch_mutexwait  (in libsystem_kernel.dylib) + 8  [0x18f3a489c]
+    +       1 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0168]
+    +       : 1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    +       :   1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    +       1 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 104  [0x1048d0178]
+    +         1 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +           1 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +             1 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    116 Thread_14964032
+    + 116 thread_start  (in libsystem_pthread.dylib) + 8  [0x18f3deb80]
+    +   116 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x18f3e3bc8]
+    +     85 gomp_thread_start  (in libgomp.1.dylib) + 316  [0x1048cde20]
+    +     ! 38 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 200,140,...  [0x104847968,0x10484792c,...]  cell_automation_openMP.c:58
+    +     ! 33 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 108  [0x10484790c]  cell_automation_openMP.c:45
+    +     ! 8 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 192  [0x104847960]  cell_automation_openMP.c:50
+    +     ! 3 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 156  [0x10484793c]  cell_automation_openMP.c:44
+    +     ! 2 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 120  [0x104847918]  cell_automation_openMP.c:46
+    +     ! 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 28  [0x1048478bc]  cell_automation_openMP.c:42
+    +     !   1 DYLD-STUB$$omp_get_num_threads  (in cell_automation_openMP) + 0  [0x104847d10]
+    +     18 gomp_thread_start  (in libgomp.1.dylib) + 288  [0x1048cde04]
+    +     ! 16 gomp_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0098]
+    +     ! : 16 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     ! :   16 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     ! :     16 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     ! 2 gomp_barrier_wait_end  (in libgomp.1.dylib) + 60  [0x1048d007c]
+    +     !   2 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     !     2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     !       2 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     13 gomp_thread_start  (in libgomp.1.dylib) + 324  [0x1048cde28]
+    +       13 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 160  [0x1048d01b0]
+    +         13 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +           13 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +             13 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    116 Thread_14964033
+    + 116 thread_start  (in libsystem_pthread.dylib) + 8  [0x18f3deb80]
+    +   116 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x18f3e3bc8]
+    +     84 gomp_thread_start  (in libgomp.1.dylib) + 316  [0x1048cde20]
+    +     ! 37 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 200,140,...  [0x104847968,0x10484792c,...]  cell_automation_openMP.c:58
+    +     ! 31 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 108  [0x10484790c]  cell_automation_openMP.c:45
+    +     ! 15 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 192  [0x104847960]  cell_automation_openMP.c:50
+    +     ! 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 104  [0x104847908]  cell_automation_openMP.c:44
+    +     18 gomp_thread_start  (in libgomp.1.dylib) + 288  [0x1048cde04]
+    +     ! 14 gomp_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0098]
+    +     ! : 14 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     ! :   14 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     ! :     14 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     ! 3 gomp_barrier_wait_end  (in libgomp.1.dylib) + 60  [0x1048d007c]
+    +     ! : 3 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     ! :   3 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     ! :     3 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     ! 1 gomp_barrier_wait_end  (in libgomp.1.dylib) + 44  [0x1048d006c]
+    +     !   1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    +     !     1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    +     14 gomp_thread_start  (in libgomp.1.dylib) + 324  [0x1048cde28]
+    +       12 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 160  [0x1048d01b0]
+    +       : 12 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +       :   12 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +       :     12 __psynch_cvwait  (in libsystem_kernel.dylib) + 8,4  [0x18f3a53cc,0x18f3a53c8]
+    +       1 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0168]
+    +       : 1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    +       :   1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    +       1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    +         1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    116 Thread_14964034
+    + 116 thread_start  (in libsystem_pthread.dylib) + 8  [0x18f3deb80]
+    +   116 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x18f3e3bc8]
+    +     84 gomp_thread_start  (in libgomp.1.dylib) + 316  [0x1048cde20]
+    +     ! 43 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 140,200,...  [0x10484792c,0x104847968,...]  cell_automation_openMP.c:58
+    +     ! 28 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 108  [0x10484790c]  cell_automation_openMP.c:45
+    +     ! 10 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 192  [0x104847960]  cell_automation_openMP.c:50
+    +     ! 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 28  [0x1048478bc]  cell_automation_openMP.c:42
+    +     ! : 1 omp_get_num_threads  (in libgomp.1.dylib) + 20  [0x1048c6c84]
+    +     ! 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 156  [0x10484793c]  cell_automation_openMP.c:44
+    +     ! 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 120  [0x104847918]  cell_automation_openMP.c:46
+    +     18 gomp_thread_start  (in libgomp.1.dylib) + 288  [0x1048cde04]
+    +     ! 15 gomp_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0098]
+    +     ! : 15 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     ! :   15 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     ! :     15 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     ! 2 gomp_barrier_wait_end  (in libgomp.1.dylib) + 60  [0x1048d007c]
+    +     ! : 2 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +     ! :   2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +     ! :     2 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +     ! 1 gomp_barrier_wait_end  (in libgomp.1.dylib) + 44  [0x1048d006c]
+    +     !   1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+    +     !     1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+    +     14 gomp_thread_start  (in libgomp.1.dylib) + 324  [0x1048cde28]
+    +       11 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 160  [0x1048d01b0]
+    +       : 11 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +       :   11 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +       :     11 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    +       3 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 104  [0x1048d0178]
+    +         3 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+    +           3 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+    +             3 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+    116 Thread_14964035
+      116 thread_start  (in libsystem_pthread.dylib) + 8  [0x18f3deb80]
+        116 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x18f3e3bc8]
+          81 gomp_thread_start  (in libgomp.1.dylib) + 316  [0x1048cde20]
+          ! 36 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 200,140,...  [0x104847968,0x10484792c,...]  cell_automation_openMP.c:58
+          ! 34 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 108  [0x10484790c]  cell_automation_openMP.c:45
+          ! 8 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 192  [0x104847960]  cell_automation_openMP.c:50
+          ! 2 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 120  [0x104847918]  cell_automation_openMP.c:46
+          ! 1 update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 156  [0x10484793c]  cell_automation_openMP.c:44
+          22 gomp_thread_start  (in libgomp.1.dylib) + 288  [0x1048cde04]
+          ! 17 gomp_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0098]
+          ! : 17 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+          ! :   15 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+          ! :   | 15 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+          ! :   2 _pthread_cond_wait  (in libsystem_pthread.dylib) + 1124  [0x18f3e4128]
+          ! :     1 _pthread_mutex_firstfit_lock_slow  (in libsystem_pthread.dylib) + 220  [0x18f3de840]
+          ! :     + 1 _pthread_mutex_firstfit_lock_wait  (in libsystem_pthread.dylib) + 84  [0x18f3e0e14]
+          ! :     +   1 __psynch_mutexwait  (in libsystem_kernel.dylib) + 8  [0x18f3a489c]
+          ! :     1 pthread_mutex_lock  (in libsystem_pthread.dylib) + 0  [0x18f3de358]
+          ! 4 gomp_barrier_wait_end  (in libgomp.1.dylib) + 60  [0x1048d007c]
+          ! : 4 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+          ! :   4 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+          ! :     4 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+          ! 1 gomp_barrier_wait_end  (in libgomp.1.dylib) + 44  [0x1048d006c]
+          !   1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+          !     1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+          13 gomp_thread_start  (in libgomp.1.dylib) + 324  [0x1048cde28]
+            12 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 160  [0x1048d01b0]
+            : 12 gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+            :   12 _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+            :     12 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x18f3a53cc]
+            1 gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0168]
+              1 pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+                1 __psynch_cvsignal  (in libsystem_kernel.dylib) + 8  [0x18f3a6820]
+
+Total number in stack (recursive counted multiple, when >=5):
+        29       __psynch_cvwait  (in libsystem_kernel.dylib) + 0  [0x18f3a53c4]
+        28       _pthread_cond_wait  (in libsystem_pthread.dylib) + 984  [0x18f3e409c]
+        28       gomp_sem_wait  (in libgomp.1.dylib) + 40  [0x1048cfe54]
+        13       __psynch_cvsignal  (in libsystem_kernel.dylib) + 0  [0x18f3a6818]
+        13       pthread_cond_signal  (in libsystem_pthread.dylib) + 720  [0x18f3e2ef8]
+        8       gomp_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0098]
+        8       gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 160  [0x1048d01b0]
+        8       update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 0  [0x1048478a0]  cell_automation_openMP.c:45
+        8       update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 0  [0x1048478a0]  cell_automation_openMP.c:50
+        8       update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 0  [0x1048478a0]  cell_automation_openMP.c:58
+        7       _pthread_start  (in libsystem_pthread.dylib) + 136  [0x18f3e3bc8]
+        7       gomp_barrier_wait_end  (in libgomp.1.dylib) + 60  [0x1048d007c]
+        7       gomp_thread_start  (in libgomp.1.dylib) + 288  [0x1048cde04]
+        7       gomp_thread_start  (in libgomp.1.dylib) + 316  [0x1048cde20]
+        7       gomp_thread_start  (in libgomp.1.dylib) + 324  [0x1048cde28]
+        7       thread_start  (in libsystem_pthread.dylib) + 8  [0x18f3deb80]
+        7       update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 0  [0x1048478a0]  cell_automation_openMP.c:44
+        7       update_step_parallel._omp_fn.0  (in cell_automation_openMP) + 0  [0x1048478a0]  cell_automation_openMP.c:46
+        6       __psynch_mutexwait  (in libsystem_kernel.dylib) + 0  [0x18f3a4894]
+        6       _pthread_mutex_firstfit_lock_slow  (in libsystem_pthread.dylib) + 220  [0x18f3de840]
+        6       _pthread_mutex_firstfit_lock_wait  (in libsystem_pthread.dylib) + 84  [0x18f3e0e14]
+        6       gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 88  [0x1048d0168]
+        5       _pthread_cond_wait  (in libsystem_pthread.dylib) + 1124  [0x18f3e4128]
+        5       gomp_team_barrier_wait_end  (in libgomp.1.dylib) + 104  [0x1048d0178]
+
+Sort by top of stack, same collapsed (when >= 5):
+        update_step_parallel._omp_fn.0  (in cell_automation_openMP)        656
+        __psynch_cvwait  (in libsystem_kernel.dylib)        242
+        __psynch_cvsignal  (in libsystem_kernel.dylib)        13
+        _dyld_start  (in dyld)        13
+        __psynch_mutexwait  (in libsystem_kernel.dylib)        8
+        initialize_road  (in cell_automation_openMP)        8
+        mach_msg2_trap  (in dyld)        5
+
+Binary images description not available
+

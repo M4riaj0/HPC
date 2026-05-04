@@ -1,0 +1,53 @@
+Process:         cell_automation_openMP [42417]
+Path:            /Users/USER/Desktop/*/cell_automation_openMP
+Load Address:    0x102294000
+Identifier:      cell_automation_openMP
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  bash [42354]
+Target Type:     live task
+
+Date/Time:       2026-05-04 13:56:23.391 -0500
+Launch Time:     2026-05-04 13:56:22.334 -0500
+OS Version:      macOS 15.7.4 (24G517)
+Report Version:  7
+Analysis Tool:   /usr/bin/heap
+
+Physical footprint:         10.0M
+Physical footprint (peak):  10.0M
+Idle exit:                  untracked
+----
+
+Process 42417: 1 zone
+
+All zones: 204 nodes malloced - Sizes: 3936KB[2] 4.5KB[1] 1.5KB[1] 1008[1] 528[1] 352[1] 272[8] 256[8] 144[1] 128[1] 96[4] 80[2] 64[11] 48[15] 32[144] 16[3] 
+
+Found:  67 ObjC classes
+Derived 8 type names for non-objects from allocation backtraces
+
+-----------------------------------------------------------------------
+All zones: 204 nodes (8080080 bytes)
+
+   COUNT      BYTES       AVG   CLASS_NAME                                        TYPE    BINARY
+   =====      =====       ===   ==========                                        ====    ======
+     134       4288      32.0   Class.data (class_rw_t)                           C       libobjc.A.dylib
+      20       2880     144.0   non-object with no stack backtrace                C       <unknown>
+       8       2176     272.0   calloc in __emutls_get_address                    C       libgomp.1.dylib
+       8       2048     256.0   malloc in __emutls_get_address                    C       libgomp.1.dylib
+       7        464      66.3   xpc_dictionary_t (Storage)                        C       libxpc.dylib
+       6       1200     200.0   xpc_string_t (Storage)                            C       libxpc.dylib
+       6        288      48.0   xpc_string_t                                      ObjC    libxpc.dylib
+       3        288      96.0   xpc_dictionary_t                                  ObjC    libxpc.dylib
+       2    8060928  4030464.0   malloc in initialize_road                         C       cell_automation_openMP
+       1       4608    4608.0   memalign in gomp_aligned_alloc                    C       libgomp.1.dylib
+       1        352     352.0   malloc in gomp_malloc                             C       libgomp.1.dylib
+       1        128     128.0   dispatch_queue_t (serial)                         ObjC    libdispatch.dylib
+       1         96      96.0   calloc in gomp_malloc_cleared                     C       libgomp.1.dylib
+       1         80      80.0   malloc in gomp_realloc                            C       libgomp.1.dylib
+       1         64      64.0   xpc_array_t (Storage)                             C       libxpc.dylib
+       1         64      64.0   xpc_pipe_t                                        ObjC    libxpc.dylib
+       1         48      48.0   Class.data.extended (class_rw_ext_t)              C       libobjc.A.dylib
+       1         48      48.0   xpc_array_t                                       ObjC    libxpc.dylib
+       1         32      32.0   Class.methodCache._buckets (bucket_t)             C       libobjc.A.dylib
+
