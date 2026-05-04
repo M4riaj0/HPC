@@ -1,0 +1,114 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 825  of event 'cpu/cycles/Pu'
+# Event count (approx.): 30548581807
+#
+# Children      Self  Command          Shared Object           Symbol                            
+# ........  ........  ...............  ......................  ..................................
+#
+    89.85%    89.85%  cell_automation  cell_automation_openMP  [.] update_step_parallel._omp_fn.0
+            |
+            ---update_step_parallel._omp_fn.0
+
+     9.52%     9.52%  cell_automation  libgomp.so.1.0.0        [.] gomp_team_barrier_wait_end
+            |          
+            |--8.04%--__clone
+            |          start_thread
+            |          gomp_thread_start
+            |          gomp_team_barrier_wait_end
+            |          
+            |--0.87%--0x100000000
+            |          0x7f4213e56010
+            |          main
+            |          gomp_team_end
+            |          gomp_team_barrier_wait_end
+            |          
+             --0.62%--0x1
+                       0x7f4214d99010
+                       main
+                       gomp_team_end
+                       gomp_team_barrier_wait_end
+
+     8.04%     0.00%  cell_automation  libc.so.6               [.] __clone
+            |
+            ---__clone
+               start_thread
+               gomp_thread_start
+               gomp_team_barrier_wait_end
+
+     8.04%     0.00%  cell_automation  libc.so.6               [.] start_thread
+            |
+            ---start_thread
+               gomp_thread_start
+               gomp_team_barrier_wait_end
+
+     8.04%     0.00%  cell_automation  libgomp.so.1.0.0        [.] gomp_thread_start
+            |
+            ---gomp_thread_start
+               gomp_team_barrier_wait_end
+
+     1.61%     0.00%  cell_automation  cell_automation_openMP  [.] main
+            |
+            ---main
+               |          
+                --1.48%--gomp_team_end
+                          gomp_team_barrier_wait_end
+
+     1.50%     0.00%  cell_automation  [unknown]               [.] 0x0000000100000000
+            |
+            ---0x100000000
+               |          
+                --1.37%--0x7f4213e56010
+                          |          
+                          |--0.87%--main
+                          |          gomp_team_end
+                          |          gomp_team_barrier_wait_end
+                          |          
+                           --0.51%--initialize_road
+
+     1.48%     0.00%  cell_automation  libgomp.so.1.0.0        [.] gomp_team_end
+            |
+            ---gomp_team_end
+               gomp_team_barrier_wait_end
+
+     1.37%     0.00%  cell_automation  [unknown]               [.] 0x00007f4213e56010
+            |
+            ---0x7f4213e56010
+               |          
+               |--0.87%--main
+               |          gomp_team_end
+               |          gomp_team_barrier_wait_end
+               |          
+                --0.51%--initialize_road
+
+     0.74%     0.00%  cell_automation  [unknown]               [.] 0x00007f4214d99010
+            |
+            ---0x7f4214d99010
+               main
+               |          
+                --0.62%--gomp_team_end
+                          gomp_team_barrier_wait_end
+
+     0.62%     0.00%  cell_automation  [unknown]               [.] 0x0000000000000001
+            |
+            ---0x1
+               0x7f4214d99010
+               main
+               gomp_team_end
+               gomp_team_barrier_wait_end
+
+     0.51%     0.13%  cell_automation  cell_automation_openMP  [.] initialize_road
+     0.38%     0.11%  cell_automation  libc.so.6               [.] rand
+     0.22%     0.22%  cell_automation  libc.so.6               [.] __random
+     0.17%     0.05%  cell_automation  libc.so.6               [.] __random_r
+     0.15%     0.00%  cell_automation  [unknown]               [.] 0xffffffff876015f0
+     0.12%     0.12%  cell_automation  libgomp.so.1.0.0        [.] gomp_team_start
+     0.12%     0.00%  cell_automation  libgomp.so.1.0.0        [.] GOMP_parallel
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

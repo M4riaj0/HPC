@@ -1,0 +1,77 @@
+--------------------------------------------------------------------------------
+Command:            ./cell_automation_openMP 100000 0.5
+Massif arguments:   --massif-out-file=massif_openmp.out
+ms_print arguments: massif_openmp.out
+--------------------------------------------------------------------------------
+
+
+    KB
+785.8^                                                                       #
+     |@::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+     |@                                                                      #
+   0 +----------------------------------------------------------------------->Gi
+     0                                                                   10.65
+
+Number of snapshots: 16
+ Detailed snapshots: [9, 12 (peak)]
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0              0                0                0             0            0
+  1        186,802               24                8            16            0
+  2        191,492              128              104            24            0
+  3        218,873          400,136          400,104            32            0
+  4        218,910          800,144          800,104            40            0
+  5      7,078,298          800,344          800,296            48            0
+  6      7,080,319          802,656          802,568            88            0
+  7      7,081,373          802,712          802,608           104            0
+  8      7,082,791          803,008          802,896           112            0
+  9      7,083,816          803,304          803,184           120            0
+99.99% (803,184B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->49.79% (400,000B) 0x4001567: initialize_road (in /home/juni/Documentos/Uni/HPC/reto2/cell_automation_openMP)
+| ->49.79% (400,000B) 0x40011A5: main (in /home/juni/Documentos/Uni/HPC/reto2/cell_automation_openMP)
+|   
+->49.79% (400,000B) 0x4001573: initialize_road (in /home/juni/Documentos/Uni/HPC/reto2/cell_automation_openMP)
+| ->49.79% (400,000B) 0x40011A5: main (in /home/juni/Documentos/Uni/HPC/reto2/cell_automation_openMP)
+|   
+->00.40% (3,184B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 10      7,084,767          803,600          803,472           128            0
+ 11 11,440,604,591          804,632          804,496           136            0
+ 12 11,440,609,184          804,632          804,496           136            0
+99.98% (804,496B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->49.71% (400,000B) 0x4001567: initialize_road (in /home/juni/Documentos/Uni/HPC/reto2/cell_automation_openMP)
+| ->49.71% (400,000B) 0x40011A5: main (in /home/juni/Documentos/Uni/HPC/reto2/cell_automation_openMP)
+|   
+->49.71% (400,000B) 0x4001573: initialize_road (in /home/juni/Documentos/Uni/HPC/reto2/cell_automation_openMP)
+| ->49.71% (400,000B) 0x40011A5: main (in /home/juni/Documentos/Uni/HPC/reto2/cell_automation_openMP)
+|   
+->00.56% (4,496B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 13 11,440,609,184          404,624          404,496           128            0
+ 14 11,440,609,214            4,616            4,496           120            0
+ 15 11,440,613,347            3,584            3,472           112            0
