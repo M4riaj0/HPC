@@ -1,0 +1,11 @@
+Estudio de escalado fuerte para cell_automation_openMP
+N=1000000  density=0.5  pasos=1000
+Cada tiempo es el promedio de 3 corridas (segundos, wall clock).
+
+Hilos    T_avg(s)     Speedup      Eficiencia    
+-----    --------     -------      ----------    
+1        0.663609     1.000        1.000         
+2        0.351359     1.889        0.945         
+4        0.210466     3.153        0.788         
+8        0.136551     4.860        0.608         
+14       0.161357     4.113        0.294         
